@@ -9,14 +9,11 @@
     <name>Ontology Normalizer</name>
     <description>Automatic lifting from XSD and XML to RDF/OWL ontologies.</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
-          <sonar.projectKey>BME-MIT-IET_iet-hf2021-en_iet-1</sonar.projectKey>
+   <properties>
+  <sonar.projectKey>BME-MIT-IET_iet-hf2021-en_iet-1</sonar.projectKey>
   <sonar.organization>bme-mit-iet-org</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    </properties>
+</properties>
 
     <dependencies>
 
