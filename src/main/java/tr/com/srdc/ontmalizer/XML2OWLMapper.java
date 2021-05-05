@@ -1,6 +1,7 @@
 package tr.com.srdc.ontmalizer;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -484,15 +485,30 @@ public class XML2OWLMapper {
      * @param format - Output format may be one of these values;
      * "RDF/XML","RDF/XML-ABBREV","N-TRIPLE","N3".
      */
-    public void writeModel(Writer out, String format) {
-        if (format.equals("RDF/XML") || format.equals("RDF/XML-ABBREV")) {
-            // This part is to add xml:base attribute to the RDF/XML and RDF/XML-ABBREV output
-            RDFWriter writer = model.getWriter(format);
-            writer.setProperty("xmlbase", baseNS);
-            writer.write(model, out, baseURI);
-        } else {
-            model.write(out, format, baseURI);
+    public boolean writeModel(String outputPath, String format) {
+    	
+    	String fileArray[]= outputPath.split("\\.");
+    	String extension = fileArray[fileArray.length-1];
+    	if(!extension.equals(format))
+    		return false;
+    	
+        try {
+            File f = new File(outputPath);
+            f.getParentFile().mkdirs();
+            FileOutputStream fout = new FileOutputStream(f);
+            if (format.equals("RDF/XML") || format.equals("RDF/XML-ABBREV")) {
+                // This part is to add xml:base attribute to the RDF/XML and RDF/XML-ABBREV output
+                RDFWriter writer = model.getWriter(format);
+                writer.setProperty("xmlbase", baseNS);
+                writer.write(model, fout, baseURI);
+            } else {
+                model.write(fout, format, baseURI);
+            }
+            fout.close();
+        } catch (Exception e) {
+            LOGGER.error("StackTrace: ", e);
         }
+        return true;
     }
 
     /**
