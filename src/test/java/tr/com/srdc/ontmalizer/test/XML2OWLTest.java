@@ -40,7 +40,7 @@ public class XML2OWLTest {
     private final String SALUS_CIM_XSD = "src/test/resources/salus-common-xsd/salus-cim.xsd";
     private final String SALUS_CDA_INSTANCE_N3 = "src/test/resources/output/salus-cda-instance.n3";
     private final String SALUS_ELIGIBILITY_INSTANCE_N3 = "src/test/resources/output/salus-eligibility-instance.n3";
-    private final String SALUS_ELIGIBILITY_INSTANCE_XML = "src/test/resources/output/salus-eligibility-instance.xml";
+    private final String SALUS_ELIGIBILITY_INSTANCE_XML = "src/test/resources/salus-common-xsd/salus-eligibility-instance.xml";
     private final String SALUS_CIM_INSTANCE_N3 = "src/test/resources/output/salus-cim-instance.n3";
     private final String SALUS_CIM_INSTANCE_XML = "src/test/resources/salus-common-xsd/salus-cim-instance.xml";
     
