@@ -13,9 +13,12 @@
   <sonar.projectKey>BME-MIT-IET_iet-hf2021-en_iet-1</sonar.projectKey>
   <sonar.organization>bme-mit-iet-org</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+<<<<<<< HEAD
        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
        	<maven.compiler.target>1.8</maven.compiler.target>
        	<maven.compiler.source>1.8</maven.compiler.source>
+=======
+>>>>>>> 3d4018b8b7722f040523ed95ed0a917f47cd4579
 </properties>
 
     <dependencies>
