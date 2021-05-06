@@ -107,4 +107,64 @@ public class XSD2OWLTest {
         }
     }
 
+    
+    @Test
+    public void cdaNullCheck() {
+
+        // This part converts XML schema to OWL ontology.
+        XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/test/resources/CDA/CDA.xsd"));
+        mapping.setObjectPropPrefix("");
+        mapping.setDataTypePropPrefix("");
+        mapping.convertXSD2OWL();
+
+        // This part prints the ontology to the specified file.
+        FileOutputStream ont;
+        try {
+            File f = new File("src/test/resources/output/cda-ontology.n3");
+            f.getParentFile().mkdirs();
+            String temp =    f.getParentFile().toString();
+            ont = new FileOutputStream(f);
+            if(ont != null) {//if file output stream does not be null we do the mapping 
+            	   mapping.writeOntology(ont, "N3");
+                   ont.close();
+            }
+            else 
+            	throw new Exception("File output stream doesn't have any value , you can check the file :"+ temp);
+         
+        } catch (Exception e) {
+            LOGGER.error("{}", e.getMessage());
+        }
+    }
+    
+    
+    @Test
+    public void xmlToOwlFileCheck() {
+
+    	String temp  = "src/test/resources/test/test.xsd";
+  try {
+    	if(temp.contains(".xsd")) {
+        // This part converts XML schema to OWL ontology.
+        XSD2OWLMapper mapping = new XSD2OWLMapper(new File(temp));
+        mapping.setObjectPropPrefix("");
+        mapping.setDataTypePropPrefix("");
+        mapping.convertXSD2OWL();
+        try {
+            File f = new File("src/test/resources/output/test.n3");
+            f.getParentFile().mkdirs();
+            Writer w = new FileWriter(f);
+            mapping.writeOntology(w, "N3");
+            w.close();
+        } catch (Exception e) {
+            LOGGER.error("{}", e.getMessage());
+            }
+    	}
+}catch (Exception e) {
+	 LOGGER.error("{}", e.getMessage());
+    }
+        // This part prints the ontology to the specified file.
+      
+    }
+    
+
+    
 }

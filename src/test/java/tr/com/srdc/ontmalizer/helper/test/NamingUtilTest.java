@@ -39,6 +39,11 @@ public class NamingUtilTest {
 		Locale.setDefault(new Locale("tr", "TR"));
 		assertEquals("preIlaç", NamingUtil.createPropertyName("pre", "ilaç"));
 		assertEquals("preIlaç", NamingUtil.createPropertyName("pre", "ılaç"));
+		
+	
+		
+	
+		
 	}
 
     @AfterClass
