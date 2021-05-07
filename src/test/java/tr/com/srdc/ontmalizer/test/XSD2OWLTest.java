@@ -3,11 +3,16 @@
  */
 package tr.com.srdc.ontmalizer.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.Writer;
+
+import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tr.com.srdc.ontmalizer.XSD2OWLMapper;
@@ -19,15 +24,18 @@ import tr.com.srdc.ontmalizer.XSD2OWLMapper;
 public class XSD2OWLTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XSD2OWLTest.class);
+    
+    private String xsdtest = "src/test/resources/test/test.xsd";
+    private String saluscim = "src/test/resources/salus-common-xsd/salus-cim.xsd";
+    private String CDA = "src/test/resources/CDA/CDA.xsd";
+    
+    private ExpectedException exception = ExpectedException.none();
 
     @Test
     public void createCDAOntology() {
 
         // This part converts XML schema to OWL ontology.
-        XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/test/resources/CDA/CDA.xsd"));
-        mapping.setObjectPropPrefix("");
-        mapping.setDataTypePropPrefix("");
-        mapping.convertXSD2OWL();
+        XSD2OWLMapper mapping = createMapper(CDA);
 
         // This part prints the ontology to the specified file.
         FileOutputStream ont;
@@ -40,16 +48,16 @@ public class XSD2OWLTest {
         } catch (Exception e) {
             LOGGER.error("{}", e.getMessage());
         }
-    }
+        exception.expect(NullPointerException.class);   
 
+    }
+        
     @Test
     public void createSALUSCommonOntology() {
 
         // This part converts XML schema to OWL ontology.
-        XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/test/resources/salus-common-xsd/salus-cim.xsd"));
-        mapping.setObjectPropPrefix("");
-        mapping.setDataTypePropPrefix("");
-        mapping.convertXSD2OWL();
+        XSD2OWLMapper mapping = createMapper(saluscim);
+    	xsdTypeCheck(saluscim);
 
         // This part prints the ontology to the specified file.
         FileOutputStream ont;
@@ -62,16 +70,17 @@ public class XSD2OWLTest {
         } catch (Exception e) {
             LOGGER.error("{}", e.getMessage());
         }
+        
+        exception.expect(NullPointerException.class);   
+
     }
 
     @Test
     public void createTestOntology() {
 
         // This part converts XML schema to OWL ontology.
-        XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/test/resources/test/test.xsd"));
-        mapping.setObjectPropPrefix("");
-        mapping.setDataTypePropPrefix("");
-        mapping.convertXSD2OWL();
+        XSD2OWLMapper mapping = createMapper(xsdtest);
+    	xsdTypeCheck(xsdtest);
 
         // This part prints the ontology to the specified file.
         FileOutputStream ont;
@@ -83,17 +92,17 @@ public class XSD2OWLTest {
             ont.close();
         } catch (Exception e) {
             LOGGER.error("{}", e.getMessage());
-        }
+        }       
+        exception.expect(NullPointerException.class);   
+
     }
 
     @Test
     public void writerTest() {
 
         // This part converts XML schema to OWL ontology.
-        XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/test/resources/test/test.xsd"));
-        mapping.setObjectPropPrefix("");
-        mapping.setDataTypePropPrefix("");
-        mapping.convertXSD2OWL();
+        XSD2OWLMapper mapping = createMapper(xsdtest);
+    	xsdTypeCheck(xsdtest);
 
         // This part prints the ontology to the specified file.
         try {
@@ -105,66 +114,26 @@ public class XSD2OWLTest {
         } catch (Exception e) {
             LOGGER.error("{}", e.getMessage());
         }
-    }
+        exception.expect(NullPointerException.class);   
 
-    
-    @Test
-    public void cdaNullCheck() {
-
-        // This part converts XML schema to OWL ontology.
-        XSD2OWLMapper mapping = new XSD2OWLMapper(new File("src/test/resources/CDA/CDA.xsd"));
-        mapping.setObjectPropPrefix("");
-        mapping.setDataTypePropPrefix("");
-        mapping.convertXSD2OWL();
-
-        // This part prints the ontology to the specified file.
-        FileOutputStream ont;
-        try {
-            File f = new File("src/test/resources/output/cda-ontology.n3");
-            f.getParentFile().mkdirs();
-            String temp =    f.getParentFile().toString();
-            ont = new FileOutputStream(f);
-            if(ont != null) {//if file output stream does not be null we do the mapping 
-            	   mapping.writeOntology(ont, "N3");
-                   ont.close();
-            }
-            else 
-            	throw new Exception("File output stream doesn't have any value , you can check the file :"+ temp);
-         
-        } catch (Exception e) {
-            LOGGER.error("{}", e.getMessage());
-        }
     }
     
-    
-    @Test
-    public void xmlToOwlFileCheck() {
-
-    	String temp  = "src/test/resources/test/test.xsd";
-  try {
-    	if(temp.contains(".xsd")) {
-        // This part converts XML schema to OWL ontology.
-        XSD2OWLMapper mapping = new XSD2OWLMapper(new File(temp));
-        mapping.setObjectPropPrefix("");
-        mapping.setDataTypePropPrefix("");
-        mapping.convertXSD2OWL();
-        try {
-            File f = new File("src/test/resources/output/test.n3");
-            f.getParentFile().mkdirs();
-            Writer w = new FileWriter(f);
-            mapping.writeOntology(w, "N3");
-            w.close();
-        } catch (Exception e) {
-            LOGGER.error("{}", e.getMessage());
-            }
-    	}
-}catch (Exception e) {
-	 LOGGER.error("{}", e.getMessage());
-    }
-        // This part prints the ontology to the specified file.
+    // This part prints the ontology to the specified file.
       
+    public void xsdTypeCheck(String file) {
+    	 String result = getExtension(file);
+    	 assertEquals(result,"xsd");
     }
     
-
+    public String getExtension(String filename) {
+    	return FilenameUtils.getExtension(filename);
+    }
     
+    private XSD2OWLMapper createMapper(final String mapper) {
+        XSD2OWLMapper mapping = new XSD2OWLMapper(new File(mapper));
+        mapping.setObjectPropPrefix("");
+        mapping.setDataTypePropPrefix("");
+        mapping.convertXSD2OWL();
+        return mapping;
+    }
 }
