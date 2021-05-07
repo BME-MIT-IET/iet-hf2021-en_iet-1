@@ -165,18 +165,21 @@ public class XSD2OWLMapper {
         parser.setErrorHandler(new MyErrorHandler());  
     }
     
-    public void parseXSD(File file) {
+    public boolean parseXSD(File file) {
         try {
             if (!file.exists()) {
                 throw new FileNotFoundException(file.getAbsolutePath());
             }
-            
             parser.parse(file);
             schemaSet = parser.getResult();
             LOGGER.debug("Schema size: {}, Schema Set: {}", schemaSet.getSchemaSize(), schemaSet);
-        } catch (SAXException | IOException e) {
+        } 
+        catch (SAXException | IOException e) {
             LOGGER.error("{}", e.getMessage());
+            return false;
         }
+        return true;
+
     }
 
     public void parseXSD(InputStream is) {

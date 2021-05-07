@@ -57,6 +57,7 @@ public class NamingUtilTest {
 		// Turkish locale (for i)
 		Locale.setDefault(new Locale("tr", "TR"));
 		assertEquals("preIlaç", NamingUtil.createPropertyName("pre", "ilaç"));
+
 		assertEquals("preIlac", NamingUtil.createPropertyName("pre", "ilac"));
 		
 		// Arabic locale
