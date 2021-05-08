@@ -9,6 +9,7 @@ import java.io.Writer;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -165,7 +166,7 @@ public class XML2OWLMapper {
 
         model = ModelFactory.createDefaultModel();
 
-        Random random = new Random();
+       Random random = new SecureRandom();
         no = random.nextInt(9999999);
 
         // Get all the named resources the count map
@@ -501,13 +502,18 @@ public class XML2OWLMapper {
                 RDFWriter writer = model.getWriter(format);
                 writer.setProperty("xmlbase", baseNS);
                 writer.write(model, fout, baseURI);
+                fout.close();
             } else {
                 model.write(fout, format, baseURI);
+                fout.close();
             }
-            fout.close();
+          
         } catch (Exception e) {
             LOGGER.error("StackTrace: ", e);
         }
+    
+        	
+       
         return true;
     }
 
