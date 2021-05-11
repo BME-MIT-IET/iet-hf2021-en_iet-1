@@ -8,10 +8,10 @@ Based on the initial program structure we decided to use CI, static techniques, 
 - Github Issues, to review each other work and share our opinion.
 
 - Maven, handeling the dependencies and managing the projects . 
-# work distibution
+# work distibution :
 After We first selected our leader of the group that is responsible for the workflow, we distributed our work based on our knowledge and our time, each member of the team was tasked with one or two topic which he can do and learn about, and then share the knowledge and job done during our daily meeting to the other group, which they can check out and assess (eg approve the pull request, or rise an issue )
 
-# continues reviews
+# continues reviews :
 We would have daily meeting everyday, as we wanted to make the maximum of continues integration so each day we would assign daily tasks to the each group or individual in the group and in the next dady we would review them in github and
 if there is an issue with any part completed task or any part of it needs improvment we used the comment and issues on github so the group/individual would know which part has to be changed or improved
 
