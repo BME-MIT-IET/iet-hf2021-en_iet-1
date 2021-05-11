@@ -4,7 +4,7 @@ We started by analysing the project's structure and its features, so we could de
 
 Based on the kick-off meeting we decided to how to use CI, static techniques and testing. To analyse the performance of the project for this purpose we planned to use: 
 - JUnit testing, to test individual units of the code.
-- SonarCloud  & jacoco, to Check the progress of the development and the parts we could improve plus the coverage of the test cases.
+- SonarCloud  & JaCoCo, to Check the progress of the development and the parts we could improve plus the coverage of the test cases.
 - Github, to review, plan, raise issues and share our opinion.
 - Maven, handeling the dependencies and managing the projects. 
 
