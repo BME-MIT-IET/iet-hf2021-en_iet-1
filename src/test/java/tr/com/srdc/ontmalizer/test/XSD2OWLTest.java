@@ -125,10 +125,10 @@ public class XSD2OWLTest {
 	@Test
 	public void testFileSafety() {
 		XSD2OWLMapper mapping = createMapper(POCD_MT000040);
-		boolean result = mapping.parseXSD(new File("src/test/resources/CFA/POCD_MT000040.xsd"));
-		assertEquals(result, false);
-		result = mapping.parseXSD(new File("src/test/resources/CDA/POCD_MT000040.xsd"));
+		boolean result = mapping.parseXSD(new File("src/test/resources/CDA/POCD_MT000040.xsd"));
 		assertEquals(result, true);
+		boolean result2 = mapping.parseXSD(new File("src/test/resources/CDA/POCD_MT000040_Null.xsd"));
+		assertEquals(result2, false);
 	}
 
 	// This part prints the ontology to the specified file.
