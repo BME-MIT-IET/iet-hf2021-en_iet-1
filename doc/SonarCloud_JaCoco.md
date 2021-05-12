@@ -26,5 +26,5 @@ The flow of Code coverage improvement also can be seen on this chart.
 
 Overall Result. 
 
-![](f6.PNG)
+![](f6.png)
 
