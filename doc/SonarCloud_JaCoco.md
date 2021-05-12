@@ -4,6 +4,7 @@ SonarCloud does not automatically run your tests or compile coverage reports its
 For the purpose of our project, we should use the Jacoco library and the associated Jacoco maven.  
 ## What is Jacoco & why we need it in sonar cloud?
 Version 5.12 of our SonarJava analyzer deprecated use JaCoCo’s binary format (.exec files) to import coverage. This binary format is internal to the JaCoCo project, and as such there are no guarantees for backward compatibility, so it should not be used for integration purposes. 
+
 As a replacement, we should use sonar-jacoco plugin, which imports JaCoCo’s XML coverage report, and this is the preferred option now. 
 
 ## How should it be integrated to the project?
