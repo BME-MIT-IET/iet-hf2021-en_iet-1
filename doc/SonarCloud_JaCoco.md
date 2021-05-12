@@ -15,6 +15,7 @@ The Maven plug-in can be included in your build with the following declaration:
 
 
 ![](f1.png) ![](f2.png)
+
 As a result of the modifications on the project, we have achieved an acceptable state in a measure of Code coverage and Technical debt.
 
 ![](f3.png)
