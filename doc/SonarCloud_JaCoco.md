@@ -1,6 +1,7 @@
 # SonarCloud and JaCoCo
 We have used Sonar cloud to analyze the initial project's code quality and monitoring the effect of our refactoring and tests on it.
-SonarCloud does not automatically run your tests or compile coverage reports itself. It has to import those reports from a coverage analysis that you set up separately.  
+SonarCloud does not automatically run your tests or compile coverage reports itself. 
+It has to import those reports from a coverage analysis that you set up separately.  
 For the purpose of our project, we should use the Jacoco library and the associated Jacoco maven.  
 ## What is Jacoco & why we need it in sonar cloud?
 Version 5.12 of our SonarJava analyzer deprecated use JaCoCo’s binary format (.exec files) to import coverage. This binary format is internal to the JaCoCo project, and as such there are no guarantees for backward compatibility, so it should not be used for integration purposes. 
