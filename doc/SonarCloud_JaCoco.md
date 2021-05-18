@@ -25,7 +25,9 @@ The flow of Code coverage improvement also can be seen on this chart.
 
 ![](f5.png)
 
-Overall Result. 
+Overall Result , shows we could obtain 70% coverage of the code , the improvement passed the code quality of the sonar cloud.
 
-![](f6.png)
+
+![image](https://user-images.githubusercontent.com/72108341/118624678-a507e680-b7c9-11eb-9a48-235537148e66.png)
+
 
